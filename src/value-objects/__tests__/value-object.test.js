@@ -1,5 +1,5 @@
 import { describe, expect, test } from '@jest/globals'
-import ValueObject from '../value-object.js'
+import ValueObject from '../value-object'
 
 class StringValueObject extends ValueObject {
   constructor (value) {
