@@ -37,9 +37,15 @@ describe('Commom Errors', () => {
     }).toThrowError(new EntityValidationError())
   })
 
-  test('InvalidLengthError with "custom message"', () => {
+  test('InvalidLengthError with errors', () => {
     expect(() => {
       throw new EntityValidationError([{ message: 'error' }], 'custom message')
-    }).toThrowError(new EntityValidationError([{ message: 'error' }], 'custom message'))
+    }).toThrowError(new EntityValidationError([{ message: 'error asdasd' }], 'custom message'))
+  })
+
+  test('InvalidLengthError with errors', () => {
+    expect(() => {
+      throw new EntityValidationError([{ message: 'error' }])
+    }).toThrowError(new EntityValidationError([{ message: 'error asdasd' }]))
   })
 })
