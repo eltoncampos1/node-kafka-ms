@@ -11,6 +11,7 @@ describe('UUID Value Object', () => {
     expect(() => new UUID(new Date())).toThrowError(new InvalidUUIDError())
     expect(() => new UUID([])).toThrowError(new InvalidUUIDError())
     expect(() => new UUID('1232')).toThrowError(new InvalidUUIDError())
+    expect(() => new UUID('1232')).toThrowError(new InvalidUUIDError('Invalid uuid'))
   })
 
   test('generate a UUID', () => {

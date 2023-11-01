@@ -1,9 +1,9 @@
 import { describe, expect, test } from '@jest/globals'
 import CustomerRepository from '../customer.repository.js'
 import ImMemoryRepository from '../../infra/database/repository/in-memory.repository.js'
-import { customerWithKey, validCustomer } from './factory.js'
 import Customer from '../customer.entity.js'
 import UUID from '../../value-objects/uuid.vo.js'
+import { customerWithKey, validCustomer } from '../factories/customer.factory.js'
 
 describe('CustomerRepository', () => {
   const makeSut = () => {
@@ -73,5 +73,21 @@ describe('CustomerRepository', () => {
     sut.delete(customer.id)
 
     expect(sut.findAll().length).toBe(0)
+  })
+
+  test('should return all customers', () => {
+    const sut = makeSut()
+
+    const arrange = [
+      { params: customerWithKey('email', 'bar@foo.com') },
+      { params: customerWithKey('email', 'bar@foo.com') },
+      { params: customerWithKey('email', 'bar@foo.com') }
+    ]
+    arrange.forEach((c) => {
+      const customer = Customer.create(c.params)
+      sut.create(customer)
+    })
+
+    expect(sut.findAll().length).toBe(arrange.length)
   })
 })

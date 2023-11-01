@@ -1,6 +1,6 @@
 import { describe, expect, test } from '@jest/globals'
 import Customer from '../customer.entity.js'
-import { validCustomer, customerWithKey, inValidCustomer, validCustomerWithId } from './factory.js'
+import { validCustomer, customerWithKey, inValidCustomer, validCustomerWithId } from '../factories/customer.factory.js'
 import UUID from '../../value-objects/uuid.vo.js'
 
 describe('Customer Entity', () => {
