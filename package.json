@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "test:watch": "NODE_OPTIONS=--experimental-vm-modules npx jest --runInBand --watch --config ./jest.config.js",
-    "test": "NODE_OPTIONS=--experimental-vm-modules npx jest --clearCache --runInBand --config ./jest.config.js"
+    "test": "NODE_OPTIONS=--experimental-vm-modules npx jest  --runInBand --config ./jest.config.js",
+    "clean-cache": "npx jest --clearCache"
   },
   "keywords": [],
   "author": "",

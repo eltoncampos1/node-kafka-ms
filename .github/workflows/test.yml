@@ -16,5 +16,8 @@ jobs:
     - name: Install deps
       run: npm install
 
+    - name: Clean cache for tests
+      run: npm clean-cache
+
     - name: Runs tests
       run: npm test
