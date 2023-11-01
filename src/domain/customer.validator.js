@@ -24,6 +24,7 @@ export default function customerValidator (customerParams) {
       errors: [...result, ...errors]
     }
   }
+
   const docType = customerParams.documentType.toLowerCase()
   if (!ALLOWED_DOCS.includes(docType)) {
     errors.push({ documentType: `DocumentType not allowed [${docType}]` })
