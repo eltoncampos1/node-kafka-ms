@@ -14,7 +14,7 @@ jobs:
       with:
         node-version: '18.16.0'
     - name: Install deps
-      run: npm install
+      run: npm install --force
 
     - name: Clean cache for tests
       run: npm run clean-cache
