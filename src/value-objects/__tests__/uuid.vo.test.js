@@ -1,6 +1,6 @@
 import { describe, expect, test } from '@jest/globals'
 import UUID from '../uuid.vo.js'
-import InvalidUUIDError from '../../errors/index.js'
+import { InvalidUUIDError } from '../../errors/index.js'
 import UUIDPRovider from '../../providers/id/uuid.js'
 
 describe('UUID Value Object', () => {

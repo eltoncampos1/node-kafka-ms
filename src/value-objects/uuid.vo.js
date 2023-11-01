@@ -1,6 +1,6 @@
 import ValueObject from './value-object.js'
 import UUIDPRovider from '../providers/id/uuid.js'
-import InvalidUUIDError from '../errors/index.js'
+import { InvalidUUIDError } from '../errors/index.js'
 
 export default class UUID extends ValueObject {
   #provider = new UUIDPRovider()
