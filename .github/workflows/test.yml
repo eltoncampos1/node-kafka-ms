@@ -1,0 +1,23 @@
+name: TESTS 
+
+on:
+  pull_request:
+    branches: [ main ]
+
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
+      with:
+        node-version: '18.16.0'
+    - name: Install deps
+      run: npm install --force
+
+    - name: Clean cache for tests
+      run: npm run clean-cache
+
+    - name: Runs tests
+      run: npm test

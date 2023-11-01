@@ -20,5 +20,6 @@ describe('UUID Value Object', () => {
 
     const generateId = new UUID().id
     expect(new UUIDPRovider().validate(generateId)).toBe(true)
+    expect(() => new UUID()).toBeDefined()
   })
 })
