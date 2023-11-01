@@ -7,11 +7,19 @@ export default class CustomerRepository {
     return this.customerRepository.create(customer)
   }
 
+  delete (id) {
+    return this.customerRepository.delete(id)
+  }
+
   findById (id) {
     return this.customerRepository.findById(id)
   }
 
   findByEmail (email) {
     return this.customerRepository.findByEmail(email)
+  }
+
+  findAll () {
+    return this.customerRepository.findAll()
   }
 }
