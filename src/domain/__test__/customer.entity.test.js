@@ -1,6 +1,6 @@
 import { describe, expect, test } from '@jest/globals'
 import Customer from '../customer.entity.js'
-import { validCustomer, customerWithKey, inValidCustomer } from './factory.js'
+import { validCustomer, customerWithKey, inValidCustomer, validCustomerWithId } from './factory.js'
 import UUID from '../../value-objects/uuid.vo.js'
 
 describe('Customer Entity', () => {
@@ -42,5 +42,22 @@ describe('Customer Entity', () => {
     })
 
     expect(() => Customer.create(inValidCustomer())).toThrow()
+  })
+
+  test('should return a JSON from customer', () => {
+    const customer = validCustomerWithId()
+    const result = Customer.create(customer).toJSON()
+
+    const expected = {
+      id: customer.id.id,
+      name: 'Jhon doe',
+      email: 'foo@bar.com',
+      document: '90847739281',
+      documentType: 'cpf',
+      phone: '+55 (11) 96648-8392',
+      password: '@QAZwsx112345'
+    }
+
+    expect(result).toStrictEqual(expected)
   })
 })

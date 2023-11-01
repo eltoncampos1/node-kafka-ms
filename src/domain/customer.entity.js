@@ -27,4 +27,16 @@ export default class Customer {
   #createId () {
     return new UUID()
   }
+
+  toJSON () {
+    return {
+      id: this.id.id,
+      name: this.name,
+      email: this.email,
+      document: this.document,
+      documentType: this.documentType,
+      phone: this.phone,
+      password: this.password
+    }
+  }
 }
