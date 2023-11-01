@@ -1,3 +1,5 @@
+import UUID from '../../value-objects/uuid.vo'
+
 const CUSTOMER_VALID = {
   name: 'Jhon doe',
   email: 'foo@bar.com',
@@ -9,6 +11,13 @@ const CUSTOMER_VALID = {
 
 export function validCustomer () {
   return CUSTOMER_VALID
+}
+
+export function validCustomerWithId () {
+  return {
+    id: new UUID(),
+    ...CUSTOMER_VALID
+  }
 }
 
 export function customerWithKey (key, value) {
