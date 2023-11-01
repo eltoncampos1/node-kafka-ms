@@ -1,4 +1,6 @@
+import { EntityValidationError } from '../errors'
 import UUID from '../value-objects/uuid.vo'
+import customerValidator from './customer.validator'
 
 export default class Customer {
   constructor ({ id, name, email, document, documentType, phone, password }) {
@@ -11,8 +13,15 @@ export default class Customer {
     this.password = password
   }
 
-  get name () {
-    return this.name
+  static create (props) {
+    const customer = new Customer(props)
+    const validation = customerValidator(customer)
+
+    if (!validation.result) {
+      throw new EntityValidationError()
+    }
+
+    return customer
   }
 
   #createId () {

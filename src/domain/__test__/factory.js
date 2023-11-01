@@ -11,7 +11,7 @@ export function validCustomer () {
   return CUSTOMER_VALID
 }
 
-export function withKey (key, value) {
+export function customerWithKey (key, value) {
   return {
     ...CUSTOMER_VALID,
     [key]: value

@@ -1,6 +1,6 @@
 import { describe, expect, test } from '@jest/globals'
 import customerValidator from '../customer.validator.js'
-import { inValidCustomer, validCustomer, withKey } from './factory.js'
+import { inValidCustomer, validCustomer, customerWithKey } from './factory.js'
 
 describe('Customer Validator', () => {
   test('Returns a valid result', () => {
@@ -32,7 +32,7 @@ describe('Customer Validator', () => {
   })
 
   test('return invalid documentType error', () => {
-    const result = customerValidator(withKey('documentType', 'cnh'))
+    const result = customerValidator(customerWithKey('documentType', 'cnh'))
 
     const expected = {
       result: false,
@@ -43,7 +43,7 @@ describe('Customer Validator', () => {
   })
 
   test('return invalid name lenght error', () => {
-    const result = customerValidator(withKey('name', 'a'))
+    const result = customerValidator(customerWithKey('name', 'a'))
 
     const expected = {
       result: false,
@@ -54,7 +54,7 @@ describe('Customer Validator', () => {
   })
 
   test('return invalid password lenght error', () => {
-    const result = customerValidator(withKey('password', '@Q1w'))
+    const result = customerValidator(customerWithKey('password', '@Q1w'))
 
     const expected = {
       result: false,
@@ -65,7 +65,7 @@ describe('Customer Validator', () => {
   })
 
   test('return invalid email format error', () => {
-    const result = customerValidator(withKey('email', 'email.invalid'))
+    const result = customerValidator(customerWithKey('email', 'email.invalid'))
 
     const expected = {
       result: false,
@@ -76,7 +76,7 @@ describe('Customer Validator', () => {
   })
 
   test('return invalid document cpf format error', () => {
-    const result = customerValidator(withKey('document', '1232eman'))
+    const result = customerValidator(customerWithKey('document', '1232eman'))
 
     const expected = {
       result: false,
@@ -87,7 +87,7 @@ describe('Customer Validator', () => {
   })
 
   test('return invalid document cnpj format error', () => {
-    const customer = { ...withKey('documentType', 'cnpj'), document: 'invalidtype' }
+    const customer = { ...customerWithKey('documentType', 'cnpj'), document: 'invalidtype' }
     const result = customerValidator(customer)
 
     const expected = {
@@ -98,7 +98,7 @@ describe('Customer Validator', () => {
     expect(result).toMatchObject(expected)
   })
   test('return invalid password format error', () => {
-    const customer = withKey('password', 'qwazsedcxv')
+    const customer = customerWithKey('password', 'qwazsedcxv')
     const result = customerValidator(customer)
 
     const expected = {

@@ -18,3 +18,11 @@ export class InvalidFormatError extends Error {
     this.name = 'InvalidLengthErrorInvalidFormatError'
   }
 }
+
+export class EntityValidationError extends Error {
+  constructor (errors, message = 'Validation Error') {
+    super(message)
+    this.name = 'EntityValidationError'
+    this.errors = errors
+  }
+}
