@@ -52,11 +52,26 @@ describe('CustomerRepository', () => {
 
     expect(expected).toBeUndefined()
   })
+
   test('should return null if no customer match the provided email', () => {
     const sut = makeSut()
 
     const expected = sut.findByEmail('foo@baz.com')
 
     expect(expected).toBeUndefined()
+  })
+
+  test('should delete an customer given a valid id', () => {
+    const sut = makeSut()
+    const customer = Customer.create(validCustomer())
+    sut.create(customer)
+
+    expect(() => sut.create(customer)).toBeDefined()
+
+    expect(sut.findAll().length).toBe(1)
+
+    sut.delete(customer.id)
+
+    expect(sut.findAll().length).toBe(0)
   })
 })
