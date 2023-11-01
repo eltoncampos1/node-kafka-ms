@@ -1,6 +1,6 @@
 import { describe, expect, test } from '@jest/globals'
 import customerValidator from '../customer.validator.js'
-import { inValidCustomer, validCustomer, customerWithKey } from './factory.js'
+import { inValidCustomer, validCustomer, customerWithKey } from '../factories/customer.factory.js'
 
 describe('Customer Validator', () => {
   test('Returns a valid result', () => {

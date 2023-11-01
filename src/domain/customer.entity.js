@@ -1,6 +1,6 @@
-import { EntityValidationError } from '../errors'
-import UUID from '../value-objects/uuid.vo'
-import customerValidator from './customer.validator'
+import { EntityValidationError } from '../errors/index.js'
+import UUID from '../value-objects/uuid.vo.js'
+import customerValidator from './customer.validator.js'
 
 export default class Customer {
   constructor ({ id, name, email, document, documentType, phone, password }) {
@@ -26,5 +26,17 @@ export default class Customer {
 
   #createId () {
     return new UUID()
+  }
+
+  toJSON () {
+    return {
+      id: this.id.id,
+      name: this.name,
+      email: this.email,
+      document: this.document,
+      documentType: this.documentType,
+      phone: this.phone,
+      password: this.password
+    }
   }
 }
