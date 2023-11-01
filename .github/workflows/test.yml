@@ -17,7 +17,7 @@ jobs:
       run: npm install
 
     - name: Clean cache for tests
-      run: npm clean-cache
+      run: npm run clean-cache
 
     - name: Runs tests
       run: npm test
