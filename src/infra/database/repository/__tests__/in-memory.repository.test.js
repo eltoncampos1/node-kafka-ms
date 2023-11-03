@@ -48,4 +48,16 @@ describe('In Memory-repository', () => {
 
     expect(sut.findById(item.id)).toBeUndefined()
   })
+  test('should return all items', () => {
+    const sut = makeSutWithSeeds(10)
+
+    expect(sut.findAll()).toHaveLength(10)
+  })
+
+  test('should return empty array', () => {
+    const sut = makeSut()
+
+    expect(sut.findAll()).toHaveLength(0)
+    expect(sut.findAll()).toEqual([])
+  })
 })
