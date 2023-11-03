@@ -8,7 +8,7 @@ const makeSut = () => {
 const makeSutWithSeeds = (times) => {
   const repo = makeSut()
   for (let i = 0; i < times; i++) {
-    repo.create({ id: i, name: 'item ' + i })
+    repo.create({ id: i, name: 'item ' + i, email: `foo-${i}@bar.com` })
   }
 
   return repo
@@ -37,7 +37,7 @@ describe('In Memory-repository', () => {
 
   test('should return an item by id', () => {
     const sut = makeSutWithSeeds(10)
-    const item = { id: 1, name: 'item 1' }
+    const item = { id: 1, name: 'item 1', email: 'foo-1@bar.com' }
 
     expect(sut.findById(item.id)).toStrictEqual(item)
   })
@@ -59,5 +59,18 @@ describe('In Memory-repository', () => {
 
     expect(sut.findAll()).toHaveLength(0)
     expect(sut.findAll()).toEqual([])
+  })
+
+  test('should return an item by email', () => {
+    const sut = makeSutWithSeeds(10)
+    const item = { id: 1, name: 'item 1', email: 'foo-1@bar.com' }
+
+    expect(sut.findByEmail(item.email)).toStrictEqual(item)
+  })
+  test('should return undefined', () => {
+    const sut = makeSutWithSeeds(10)
+    const item = { id: 11, name: 'item 11', email: 'foo-11@bar.com' }
+
+    expect(sut.findByEmail(item.email)).toBeUndefined()
   })
 })
