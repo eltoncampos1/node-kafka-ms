@@ -1,4 +1,4 @@
-export default class ImMemoryRepository {
+export default class InMemoryRepository {
   #items = []
   create (item) {
     this.#items.push(item)

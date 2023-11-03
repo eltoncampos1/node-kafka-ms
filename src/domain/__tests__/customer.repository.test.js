@@ -1,13 +1,13 @@
 import { describe, expect, test } from '@jest/globals'
 import CustomerRepository from '../customer.repository.js'
-import ImMemoryRepository from '../../infra/database/repository/in-memory.repository.js'
+import InMemoryRepository from '../../infra/database/repository/in-memory.repository.js'
 import Customer from '../customer.entity.js'
 import UUID from '../../value-objects/uuid.vo.js'
 import { customerWithKey, validCustomer } from '../factories/customer.factory.js'
 
 describe('CustomerRepository', () => {
   const makeSut = () => {
-    const inMemoryRepo = new ImMemoryRepository()
+    const inMemoryRepo = new InMemoryRepository()
     const customerRepository = new CustomerRepository(inMemoryRepo)
 
     return customerRepository
