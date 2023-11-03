@@ -34,4 +34,18 @@ describe('In Memory-repository', () => {
     sut.delete(item.id)
     expect(sut.findAll()).toHaveLength(9)
   })
+
+  test('should return an item by id', () => {
+    const sut = makeSutWithSeeds(10)
+    const item = { id: 1, name: 'item 1' }
+
+    expect(sut.findById(item.id)).toStrictEqual(item)
+  })
+
+  test('should return undefined if id does not exists', () => {
+    const sut = makeSutWithSeeds(10)
+    const item = { id: 11, name: 'item 11' }
+
+    expect(sut.findById(item.id)).toBeUndefined()
+  })
 })
