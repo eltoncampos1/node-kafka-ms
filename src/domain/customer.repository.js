@@ -3,8 +3,8 @@ export default class CustomerRepository {
     this.customerRepository = repository
   }
 
-  create (customer) {
-    return this.customerRepository.create(customer)
+  insert (customer) {
+    return this.customerRepository.insert(customer)
   }
 
   delete (id) {

@@ -15,7 +15,7 @@ describe('CustomerRepository', () => {
   test('should create a new Customer', () => {
     const sut = makeSut()
     const vCustomer = Customer.create(validCustomer())
-    const { _id, ...customer } = sut.create(vCustomer)
+    const { _id, ...customer } = sut.insert(vCustomer)
 
     expect(customer).toMatchObject(validCustomer())
   })
@@ -24,8 +24,8 @@ describe('CustomerRepository', () => {
     const sut = makeSut()
     const firstCustomer = Customer.create(validCustomer())
     const secondCustomer = Customer.create(customerWithKey('document', '87493302748'))
-    const customer = sut.create(firstCustomer)
-    sut.create(secondCustomer)
+    const customer = sut.insert(firstCustomer)
+    sut.insert(secondCustomer)
 
     const expected = sut.findById(customer.id)
 
@@ -36,8 +36,8 @@ describe('CustomerRepository', () => {
     const sut = makeSut()
     const firstCustomer = Customer.create(validCustomer())
     const secondCustomer = Customer.create(customerWithKey('document', '87493302748'))
-    const customer = sut.create(firstCustomer)
-    sut.create(secondCustomer)
+    const customer = sut.insert(firstCustomer)
+    sut.insert(secondCustomer)
 
     const expected = sut.findByEmail(customer.email)
 
@@ -64,9 +64,9 @@ describe('CustomerRepository', () => {
   test('should delete an customer given a valid id', () => {
     const sut = makeSut()
     const customer = Customer.create(validCustomer())
-    sut.create(customer)
+    sut.insert(customer)
 
-    expect(() => sut.create(customer)).toBeDefined()
+    expect(() => sut.insert(customer)).toBeDefined()
 
     expect(sut.findAll().length).toBe(1)
 
@@ -85,7 +85,7 @@ describe('CustomerRepository', () => {
     ]
     arrange.forEach((c) => {
       const customer = Customer.create(c.params)
-      sut.create(customer)
+      sut.insert(customer)
     })
 
     expect(sut.findAll().length).toBe(arrange.length)

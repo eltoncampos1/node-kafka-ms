@@ -1,6 +1,6 @@
 export default class InMemoryRepository {
   #items = []
-  create (item) {
+  insert (item) {
     this.#items.push(item)
     return item
   }
