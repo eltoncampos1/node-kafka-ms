@@ -2,6 +2,7 @@ import { describe, expect, test } from '@jest/globals'
 import Customer from '../customer.entity.js'
 import { validCustomer, customerWithKey, inValidCustomer, validCustomerWithId } from '../factories/customer.factory.js'
 import UUID from '../../value-objects/uuid.vo.js'
+import { EntityValidationError } from '../../errors/index.js'
 
 describe('Customer Entity', () => {
   test('should return an customer', () => {
@@ -38,7 +39,7 @@ describe('Customer Entity', () => {
     ]
 
     tests.forEach(([key, value]) => {
-      expect(() => Customer.create(customerWithKey(key, value))).toThrow()
+      expect(Customer.create(customerWithKey(key, value))).toBeInstanceOf(EntityValidationError)
     })
 
     expect(() => Customer.create(inValidCustomer())).toThrow()

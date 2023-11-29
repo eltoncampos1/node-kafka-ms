@@ -18,7 +18,7 @@ export default class Customer {
     const validation = customerValidator(customer)
 
     if (!validation.result) {
-      throw new EntityValidationError()
+      return new EntityValidationError(validation.errors)
     }
 
     return customer
